@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="card">
+  <h1 class="card-title">Login</h1>
+  <div class="card-body">
+    <!--Form Group-->
+    <form [formGroup]="loginForm"
+          (ngSubmit)="signIn()">
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="email">email</label>
+        <!--Box Text-->
+        <input type="text" id="email" class="form-control" placeholder="Write your email"
+               formControlName="email"
+               [ngClass]="{'error':isTouchedField(loginForm,'email')}">
+        <span class="text-danger">{{ getErrorsForm('email') }}</span>
+      </div>
+
+      <!--Box-->
+      <div class="mb-2">
+        <!--Form Label-->
+        <label class="form-label" for="password">password</label>
+        <!--Text Box-->
+        <input type="email" id="password" class="form-control" placeholder="Write your password"
+               formControlName="password"
+               [ngClass]="{'error':isTouchedField(loginForm,'password')}">
+        <span class="text-danger">{{ getErrorsForm('password') }}</span>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-primary">
+          Send
+        </button>
+        <div>
+          <a routerLink="/auth/register">Register</a>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+</div>
