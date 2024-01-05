@@ -46,7 +46,7 @@ export class LoginComponent extends AppBaseComponent {
 
       // Wait the observable and convert: Observable->Promise
       await lastValueFrom(this.authService.signIn(dtoLogin));
-      console.log(this.tokenService.getToken());
+      console.log("tokenService.getToken->", this.tokenService.getToken());
 
       // Wait the login, and Redirect to the home after
       await this.router.navigateByUrl('/portfolio');
