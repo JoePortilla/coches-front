@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {AuthLoginRequestDto} from "../../../../core/dto/auth-login-request-dto";
 import {AppBaseComponent} from "../../../../core/utils/AppBaseComponent";
 import {AuthService} from "../../../../core/services/auth.service";
+import {lastValueFrom} from "rxjs";
+import {TokenService} from "../../../../core/services/token.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,9 @@ import {AuthService} from "../../../../core/services/auth.service";
 })
 export class LoginComponent extends AppBaseComponent {
   constructor(private fb: FormBuilder,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private tokenService: TokenService,
+              private router: Router) {
     super();
   }
 
@@ -23,7 +27,7 @@ export class LoginComponent extends AppBaseComponent {
       [Validators.required]]
   });
 
-  public signIn() {
+  public async signIn(): Promise<void> {
     let dtoLogin: AuthLoginRequestDto;
 
     if (this.loginForm.valid) {
@@ -38,7 +42,14 @@ export class LoginComponent extends AppBaseComponent {
       // Debug DTO
       console.log("dtoLogin->", dtoLogin);
 
-      this.authService.signIn(dtoLogin);
+      // Wait the observable and convert: Observable->Promise
+      await lastValueFrom(this.authService.signIn(dtoLogin));
+      console.log(this.tokenService.getToken());
+
+      // Wait the login, and Redirect to the home after
+      await this.router.navigateByUrl('/portfolio');
+
+
     } else {
       this.loginForm.markAllAsTouched();
       // Debug all the errors
