@@ -5,6 +5,8 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment.development";
 import {AuthLoginResponseDto} from "../dto/auth-login-response-dto";
 
+const {apiUrl} = environment;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +14,11 @@ import {AuthLoginResponseDto} from "../dto/auth-login-response-dto";
  * Endpoints related to Auth. Related with the controllers in spring
  */
 export class AuthService {
-  private apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {
   }
 
   public signIn(authDto: AuthLoginRequestDto): Observable<AuthLoginResponseDto> {
-    return this.http.post<AuthLoginResponseDto>(this.apiUrl + "/auth/signin", authDto);
+    return this.http.post<AuthLoginResponseDto>(`${apiUrl}/auth/signin`, authDto);
   }
 }

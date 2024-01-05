@@ -40,6 +40,7 @@ export class LoginComponent extends AppBaseComponent {
 
       this.authService.signIn(dtoLogin);
     } else {
+      this.loginForm.markAllAsTouched();
       // Debug all the errors
       console.log("loginForm Errors->", this.getAllErrorsForm(this.loginForm));
     }
