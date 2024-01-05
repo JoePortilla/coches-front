@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthLoginRequestDto} from "../../../../core/dto/auth-login-request-dto";
 import {AppBaseComponent} from "../../../../core/utils/AppBaseComponent";
+import {AuthService} from "../../../../core/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,8 @@ import {AppBaseComponent} from "../../../../core/utils/AppBaseComponent";
   styleUrl: './login.component.css'
 })
 export class LoginComponent extends AppBaseComponent {
-  constructor(private router: Router,
-              private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private authService: AuthService) {
     super();
   }
 
@@ -34,9 +35,10 @@ export class LoginComponent extends AppBaseComponent {
         'email': email,
         'password': password
       }
-
       // Debug DTO
       console.log("dtoLogin->", dtoLogin);
+
+      this.authService.signIn(dtoLogin);
     } else {
       // Debug all the errors
       console.log("loginForm Errors->", this.getAllErrorsForm(this.loginForm));
