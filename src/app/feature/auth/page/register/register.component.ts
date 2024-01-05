@@ -8,6 +8,7 @@ import {CustomValidators} from "../../../../core/utils/CustomValidators";
 import {ErrorsForm} from "../../../../core/enums/ErrorsForm";
 import {RegisterRequestDto} from "../../../../core/dto/register-request-dto";
 import {lastValueFrom} from "rxjs";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -53,7 +54,12 @@ export class RegisterComponent extends AppBaseComponent {
       this.registered = true;
 
     } else {
-      alert("registerForm Errors")
+      this.registerForm.markAllAsTouched();
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'registerForm Errors'
+      })
       console.log("registerForm Errors->", this.getAllErrorsForm(this.registerForm));
     }
 

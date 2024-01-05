@@ -7,6 +7,7 @@ import {AuthService} from "../../../../core/services/auth.service";
 import {lastValueFrom} from "rxjs";
 import {TokenService} from "../../../../core/services/token.service";
 import {ErrorsForm} from "../../../../core/enums/ErrorsForm";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -53,7 +54,11 @@ export class LoginComponent extends AppBaseComponent {
 
     } else {
       this.loginForm.markAllAsTouched();
-      // Debug all the errors
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'registerForm Errors'
+      })
       console.log("loginForm Errors->", this.getAllErrorsForm(this.loginForm));
     }
 
