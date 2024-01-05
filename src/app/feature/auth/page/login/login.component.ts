@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {AuthLoginRequestDto} from "../../../../core/dto/auth-login-request-dto";
+import {LoginRequestDto} from "../../../../core/dto/login-request-dto";
 import {AppBaseComponent} from "../../../../core/utils/AppBaseComponent";
 import {AuthService} from "../../../../core/services/auth.service";
 import {lastValueFrom} from "rxjs";
 import {TokenService} from "../../../../core/services/token.service";
+import {ErrorsForm} from "../../../../core/enums/ErrorsForm";
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent extends AppBaseComponent {
   });
 
   public async signIn(): Promise<void> {
-    let dtoLogin: AuthLoginRequestDto;
+    let dtoLogin: LoginRequestDto;
 
     if (this.loginForm.valid) {
       // Temporary variables
@@ -67,9 +68,9 @@ export class LoginComponent extends AppBaseComponent {
 
     if (this.isTouchedField(this.loginForm, field)) {
       if (this.loginForm.get(field).hasError('required')) {
-        message = 'The field (' + field + ') is required';
+        message = ErrorsForm.REQUIRED;
       } else if (this.loginForm.get(field).hasError('email')) {
-        message = 'Email format required';
+        message = ErrorsForm.EMAIL_FORMAT;
       }
     }
     return message;

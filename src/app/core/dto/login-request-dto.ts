@@ -1,7 +1,7 @@
 /**
  * Dto de auth customer
  */
-export interface AuthLoginRequestDto {
+export interface LoginRequestDto {
   email: string;
   password: string;
 }

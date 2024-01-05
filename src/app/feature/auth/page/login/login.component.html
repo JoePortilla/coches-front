@@ -20,7 +20,7 @@
         <!--Form Label-->
         <label class="form-label" for="password">password</label>
         <!--Text Box-->
-        <input type="email" id="password" class="form-control" placeholder="Write your password"
+        <input type="password" id="password" class="form-control" placeholder="Write your password"
                formControlName="password"
                [ngClass]="{'error':isTouchedField(loginForm,'password')}">
         <span class="text-danger">{{ getErrorsForm('password') }}</span>

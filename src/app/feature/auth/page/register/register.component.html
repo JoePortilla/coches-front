@@ -1,1 +1,69 @@
-<p>register works!</p>
+<div class="card">
+  <h1 class="card-title">Register</h1>
+  <div class="card-body">
+    <!--Form Group-->
+    <form [formGroup]="registerForm"
+          (ngSubmit)="register()"
+          *ngIf="!registered">
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="fullName">Full Name</label>
+        <!--Box Text-->
+        <input type="text" id="fullName" class="form-control" placeholder="Write your fullName"
+               formControlName="fullName"
+               [ngClass]="{'error':isTouchedField(registerForm,'fullName')}">
+        <span class="text-danger">{{ getErrorsForm('fullName') }}</span>
+      </div>
+
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="cardId">Card ID</label>
+        <!--Box Text-->
+        <input type="text" id="cardId" class="form-control" placeholder="Write your Card ID"
+               formControlName="cardId"
+               [ngClass]="{'error':isTouchedField(registerForm,'cardId')}">
+        <span class="text-danger">{{ getErrorsForm('cardId') }}</span>
+      </div>
+
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="cellphone">Cellphone</label>
+        <!--Box Text-->
+        <input type="text" id="cellphone" class="form-control" placeholder="Write your Cellphone"
+               formControlName="cellphone"
+               [ngClass]="{'error':isTouchedField(registerForm,'cellphone')}">
+        <span class="text-danger">{{ getErrorsForm('cellphone') }}</span>
+      </div>
+
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="email">email</label>
+        <!--Box Text-->
+        <input type="text" id="email" class="form-control" placeholder="Write your email"
+               formControlName="email"
+               [ngClass]="{'error':isTouchedField(registerForm,'email')}">
+        <span class="text-danger">{{ getErrorsForm('email') }}</span>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-primary">
+          Send
+        </button>
+        <div>
+          <a routerLink="/auth/login">Login</a>
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="registered">
+      <p>Your default password is:</p>
+      <h4>{{ passwordGenerated }}</h4>
+      <a routerLink="/auth/login">Go to Login</a>
+    </div>
+
+  </div>
+</div>
