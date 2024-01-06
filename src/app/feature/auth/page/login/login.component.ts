@@ -41,16 +41,13 @@ export class LoginComponent extends AppBaseComponent {
         'email': email,
         'password': password
       }
-      // Debug DTO
-      console.log("dtoLogin->", dtoLogin);
 
       // Wait the observable and convert: Observable->Promise
       await lastValueFrom(this.authService.signIn(dtoLogin));
-      console.log("tokenService.getToken->", this.tokenService.getToken());
+      console.log("signIn:getToken->", this.tokenService.getToken());
 
       // Wait the login, and Redirect to the home after
       await this.router.navigateByUrl('/portfolio');
-
 
     } else {
       this.loginForm.markAllAsTouched();

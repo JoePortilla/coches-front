@@ -6,6 +6,9 @@ import {catchError, Observable, throwError} from 'rxjs';
 import {TokenService} from "../services/token.service";
 import Swal from "sweetalert2";
 
+/**
+ * Intercepts HTTP requests and adds headers to the request or some logic (validations).
+ */
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
@@ -14,28 +17,22 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>,
             next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log("entre al interceptor");
-
     let headers;
 
-    // Obtener el token de la petición
+    // Get the request token
     let token = this.tokenService.getToken();
-    console.log("token interceptor", token, this.tokenService.getToken());
 
+    // If the token does not exist, the original request is passed on.
     if (!token) {
-      // Si el token no existe se pasa la request original
-      console.log("request original->", request)
       return next.handle(request);
     }
 
-    // Creo el objeto de header
+    // If the token exists, the header object is created by concatenating Bearer + Token
     headers = {
       'Authorization': 'Bearer ' + token,
-      // 'Access-Control-Allow-Origin': '*'
     }
-    console.log(headers)
 
-    // Clonar la petición para cambiar su header
+    // Clone the request to add the Authorization header
     let authRequest = request.clone({
       setHeaders: {
         ...headers
@@ -43,7 +40,8 @@ export class AuthInterceptor implements HttpInterceptor {
       // setParams:{{}}
     });
 
-    console.log("AuthRequest->", authRequest)
+    // Return the new request
+    console.log("AuthInterceptor: request->", authRequest)
     return next.handle(authRequest).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 403) {

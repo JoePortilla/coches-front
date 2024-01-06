@@ -32,7 +32,7 @@ export class TokenService {
 
   public getInfoToken(): CustomerJwtDto {
     let infoToken = jwtDecode(getCookie("token"));
-    console.log(infoToken)
+    console.log("getInfoToken->", infoToken)
     return <CustomerJwtDto>infoToken;
   }
 }
