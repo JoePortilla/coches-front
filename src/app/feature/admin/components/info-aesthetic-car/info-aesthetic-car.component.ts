@@ -7,15 +7,15 @@ import {ControlContainer} from "@angular/forms";
   styleUrl: './info-aesthetic-car.component.css'
 })
 export class InfoAestheticCarComponent {
-  public infoAestheticForms: any;
+  public infoAestheticForm: any;
 
   constructor(private controlContainer: ControlContainer) {
   }
 
   ngOnInit(): void {
     // The object is declared as a control
-    this.infoAestheticForms = this.controlContainer.control;
+    this.infoAestheticForm = this.controlContainer.control;
     // The control is pointed to the parent form
-    this.infoAestheticForms = this.infoAestheticForms.controls["infoAestheticForms"];
+    this.infoAestheticForm = this.infoAestheticForm.controls["infoAestheticForm"];
   }
 }

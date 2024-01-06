@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AppBaseComponent} from "../../../../core/utils/AppBaseComponent";
 import {CustomValidators} from "../../../../core/utils/CustomValidators";
+import {CarDto} from "../../../../core/dto/CarDto";
+import Swal from "sweetalert2";
+import {CarService} from "../../../../core/services/car.service";
 
 @Component({
   selector: 'app-register-car',
@@ -9,7 +12,8 @@ import {CustomValidators} from "../../../../core/utils/CustomValidators";
   styleUrl: './register-car.component.css'
 })
 export class RegisterCarComponent extends AppBaseComponent {
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private carService: CarService) {
     super();
   }
 
@@ -40,5 +44,47 @@ export class RegisterCarComponent extends AppBaseComponent {
 
   public async registerCar(): Promise<void> {
 
+    if (!this.registerCarForm.valid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Hay errores en el formulario, reviselo por favor'
+      });
+      console.log("Errors", this.getAllErrorsForm(this.registerCarForm));
+      this.registerCarForm.markAllAsTouched();
+      return;
+    }
+
+    let formData = this.registerCarForm.value;
+    let formBasic = formData["infoBasicForm"];
+    let formMech = formData["infoMechForm"];
+    let formAesthetic = formData["infoAestheticForm"];
+
+    let dtoRegisterCar: CarDto = {
+      ...formBasic,
+      ...formMech,
+      ...formAesthetic
+    }
+
+    console.log("dtoRegisterCar to send->", dtoRegisterCar);
+
+    this.carService.registerCar(dtoRegisterCar).subscribe({
+      next: value => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Registro existoso',
+          text: 'Se registró el carro correctamente'
+        })
+        console.log("Saved car->", value);
+      },
+      error: err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Algo ha ocurrido',
+          text: 'HUbo un problema al guardar el carro'
+        });
+        console.log("error saving car->", err);
+      }
+    });
   }
 }

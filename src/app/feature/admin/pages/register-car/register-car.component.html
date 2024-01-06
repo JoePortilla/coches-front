@@ -1,50 +1,54 @@
+<h1>Register car</h1>
+
 <form [formGroup]="registerCarForm"
-      (ngSubmit)="registerCar()>
+      (ngSubmit)="registerCar()">
   <div class=" accordion accordion-flush" id="accordion-form">
 
-<div class="accordion-item">
-  <h2 class="accordion-header">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#info-form" aria-expanded="false" aria-controls="info-form">
-      Información básica
-    </button>
-  </h2>
-  <div id="info-form" class="accordion-collapse collapse" data-bs-parent="#accordion-form">
-    <div class="accordion-body">
-      <app-info-basic-car></app-info-basic-car>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#info-form" aria-expanded="false" aria-controls="info-form">
+          Información básica
+        </button>
+      </h2>
+      <div id="info-form" class="accordion-collapse collapse" data-bs-parent="#accordion-form">
+        <div class="accordion-body">
+          <app-info-basic-car></app-info-basic-car>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<div class="accordion-item">
-  <h2 class="accordion-header">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#info-mech" aria-expanded="false" aria-controls="info-mech">
-      Información mecánica
-    </button>
-  </h2>
-  <div id="info-mech" class="accordion-collapse collapse" data-bs-parent="#accordion-form">
-    <div class="accordion-body">
-      <app-info-mech-car></app-info-mech-car>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#info-mech" aria-expanded="false" aria-controls="info-mech">
+          Información mecánica
+        </button>
+      </h2>
+      <div id="info-mech" class="accordion-collapse collapse" data-bs-parent="#accordion-form">
+        <div class="accordion-body">
+          <app-info-mech-car></app-info-mech-car>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div class="accordion-item">
-  <h2 class="accordion-header">
-    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#info-aesthethic" aria-expanded="false" aria-controls="info-aesthethic">
-      Información éstetica
-    </button>
-  </h2>
-  <div id="info-aesthethic" class="accordion-collapse collapse" data-bs-parent="#accordion-form">
-    <div class="accordion-body">
-      <app-info-aesthetic-car></app-info-aesthetic-car>
-    </div>
-  </div>
-</div>
-</div>
 
-<button type="submit" class="btn btn-primary btn-block mb-4">
-  Register Car
-</button>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#info-aesthethic" aria-expanded="false" aria-controls="info-aesthethic">
+          Información éstetica
+        </button>
+      </h2>
+      <div id="info-aesthethic" class="accordion-collapse collapse" data-bs-parent="#accordion-form">
+        <div class="accordion-body">
+          <app-info-aesthetic-car></app-info-aesthetic-car>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block mb-4">
+    Register Car
+  </button>
 </form>
