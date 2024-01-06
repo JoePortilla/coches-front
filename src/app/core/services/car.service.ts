@@ -13,7 +13,6 @@ export class CarService {
   constructor(private http: HttpClient) {
   }
 
-
   public getAllCars(): Observable<any[]> {
     return this.http.get<any[]>(`${apiUrl}/cars`)
   }

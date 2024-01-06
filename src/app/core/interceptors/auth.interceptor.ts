@@ -21,9 +21,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
     // Get the request token
     let token = this.tokenService.getToken();
+    console.log("AuthInterceptor: token->", token)
 
     // If the token does not exist, the original request is passed on.
     if (!token) {
+      console.log("AuthInterceptor: null token request->", request);
       return next.handle(request);
     }
 

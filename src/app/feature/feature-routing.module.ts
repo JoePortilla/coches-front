@@ -10,8 +10,13 @@ const routes: Routes = [
   },
   {
     path: 'portfolio',
-    canActivate: [() => inject(GuardAuthService).canActiveWithAuth()],
+    canActivate: [() => inject(GuardAuthService).canActiveSecured()],
     loadChildren: () => import("./home/home.module").then(m => m.HomeModule)
+  },
+  {
+    path: 'admin',
+    canActivate: [() => inject(GuardAuthService).canActiveWithRolAdmin()],
+    loadChildren: () => import("./admin/admin.module").then(m => m.AdminModule)
   }
 ];
 

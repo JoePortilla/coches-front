@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {getCookie, setCookie} from "typescript-cookie";
-import {CustomerJwtDto} from "../dto/CustomerJwtDto";
+import {UserJwtDto} from "../dto/UserJwtDto";
 import {jwtDecode} from "jwt-decode";
 
 @Injectable({
@@ -30,9 +30,12 @@ export class TokenService {
 
   }
 
-  public getInfoToken(): CustomerJwtDto {
+  /**
+   * You should install jwtDecode
+   */
+  public getInfoToken(): UserJwtDto {
     let infoToken = jwtDecode(getCookie("token"));
-    console.log("getInfoToken->", infoToken)
-    return <CustomerJwtDto>infoToken;
+    // console.log("getInfoToken->", infoToken)
+    return <UserJwtDto>infoToken;
   }
 }

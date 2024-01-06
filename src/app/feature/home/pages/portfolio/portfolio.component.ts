@@ -14,6 +14,9 @@ export class PortfolioComponent {
   public listCarsPortfolio: any[];
 
   constructor(private carService: CarService) {
+  }
+
+  ngOnInit() {
     this.carService.getAllCars().subscribe({
       next: value => {
         this.listCarsPortfolio = value;

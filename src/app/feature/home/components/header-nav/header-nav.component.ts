@@ -7,14 +7,22 @@ import {TokenService} from "../../../../core/services/token.service";
   styleUrl: './header-nav.component.css'
 })
 export class HeaderNavComponent {
-  // public nameCustomer: string;
-  //
-  // public emailCustomer: string;
-  //
-  //
-  // constructor(private tokenService: TokenService) {
-  //   this.nameCustomer = this.tokenService.getInfoToken().fullname;
-  //   this.emailCustomer = this.tokenService.getInfoToken().email;
-  // }
+  public nameUser: string;
+
+  public emailUser: string;
+
+  public role: string;
+
+  constructor(private tokenService: TokenService) {
+  }
+
+  /**
+   * Deconstruction of JWT
+   */
+  ngOnInit() {
+    this.nameUser = this.tokenService.getInfoToken().fullname;
+    this.emailUser = this.tokenService.getInfoToken().email;
+    this.role = this.tokenService.getInfoToken().rol;
+  }
 
 }
