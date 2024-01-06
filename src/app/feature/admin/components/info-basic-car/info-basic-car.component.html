@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-body">
+    <!--Form Group-->
+    <form [formGroup]="infoBasicForm"
+    >
+
+      <div class="form-outline mb-4">
+        <label class="form-label" for="brandCarId">Brand Car Id</label>
+        <select class="form-select" id="brandCarId" formControlName="brandCarId">
+          <option value="" selected disabled>Select</option>
+          <option *ngFor="let brandCar of listBrandCar"
+                  [value]="[brandCar.id]">
+            {{ brandCar.description }}
+          </option>
+        </select>
+      </div>
+
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="reference">reference</label>
+        <!--Box Text-->
+        <input type="text" id="reference" class="form-control" placeholder="Write your reference"
+               formControlName="reference">
+      </div>
+
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="price">price</label>
+        <!--Box Text-->
+        <input type="number" id="price" class="form-control" placeholder="Write your price"
+               formControlName="price">
+      </div>
+
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="modelYear">modelYear</label>
+        <!--Box Text-->
+        <input type="number" id="modelYear" class="form-control" placeholder="Write your modelYear"
+               formControlName="modelYear">
+      </div>
+
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="category">category</label>
+        <!--Box Text-->
+        <input type="text" id="category" class="form-control" placeholder="Write your category"
+               formControlName="category">
+      </div>
+
+    </form>
+  </div>
+</div>

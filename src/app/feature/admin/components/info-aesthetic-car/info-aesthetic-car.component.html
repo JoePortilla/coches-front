@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-body">
+    <!--Form Group-->
+    <form [formGroup]="infoAestheticForms"
+    >
+
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="color">color</label>
+        <!--Box Text-->
+        <input type="text" id="color" class="form-control" placeholder="Write your color"
+               formControlName="color">
+      </div>
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="numberDoor">numberDoor</label>
+        <!--Box Text-->
+        <input type="number" id="numberDoor" class="form-control" placeholder="Write your numberDoor"
+               formControlName="numberDoor">
+      </div>
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="numberSeats">numberSeats</label>
+        <!--Box Text-->
+        <input type="number" id="numberSeats" class="form-control" placeholder="Write your numberSeats"
+               formControlName="numberSeats">
+      </div>
+      <!--Box-->
+      <div class="mb-2">
+        <!--Box Label-->
+        <label class="form-label" for="imagePath">imagePath</label>
+        <!--Box Text-->
+        <input type="text" id="imagePath" class="form-control" placeholder="Write your imagePath"
+               formControlName="imagePath">
+      </div>
+
+    </form>
+  </div>
+</div>
